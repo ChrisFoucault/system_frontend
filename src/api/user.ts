@@ -1,12 +1,6 @@
-import axios, { type AxiosResponse } from 'axios'
-import { API_BASE_URL } from '@/config';
 import { get, post, put, del } from '@/utils/request.ts'
+import type { LoginResponse } from '@/types/user.ts'
 
-interface LoginResponse {
-  token?: string;
-  message?: string;
-}
-
-export const login = async (username: string, password: string): Promise<string> => {
-  return post('/loign', { username, password });
+export const login = async (username: string, password: string): Promise<LoginResponse> => {
+  return post('/user/login', { username, password });
 };

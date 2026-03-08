@@ -36,20 +36,29 @@
 
 <script setup lang="ts">
 defineOptions({ name: 'LoginView' });
-import { ref } from 'vue'
+import { login } from '@/api/user.ts';
+import { ref } from 'vue';
+import { useRouter } from 'vue-router';
+import { ElMessage } from 'element-plus';
+import { useUserStore } from '@/stores/user.ts'
 
-const username = ref('')
-const password = ref('')
+const username = ref('administrators')
+const password = ref('111111')
 const loading = ref(false)
-
+const router = useRouter()
+const userStore = useUserStore()
 const handleLogin = async () => {
-  loading.value = true
-  try {
-    console.log('Login attempt:', { username: username.value, password: password.value })
-    // ...existing code... (调用登录 API)
-  } finally {
-    loading.value = false
-  }
+  login(username.value, password.value).then((res)=>{
+    if (res.code === 200) {
+      userStore.login(res.data.token, res.data.user.realName);
+      router.push('/home')
+    } else {
+      ElMessage({
+        message: res.message,
+        type: 'error',
+      })
+    }
+  });
 }
 </script>
 
