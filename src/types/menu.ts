@@ -4,7 +4,7 @@ export type Menu =  {
   id: number;
   name: string;
   code: string;
-  children?: Menu[];
+  children: Menu[];
 }
 
 export type MenuListResponse = BaseResponse & {

@@ -36,29 +36,29 @@
 
 <script setup lang="ts">
 defineOptions({ name: 'LoginView' });
-import { login } from '@/api/user.ts';
-import { ref } from 'vue';
+import { onMounted, ref } from 'vue'
 import { useRouter } from 'vue-router';
-import { ElMessage } from 'element-plus';
-import { useUserStore } from '@/stores/user.ts'
+import { useUserStore } from '@/stores/user.ts';
+import { useMenuStore } from '@/stores/menu.ts';
 
-const username = ref('administrators')
-const password = ref('111111')
-const loading = ref(false)
-const router = useRouter()
-const userStore = useUserStore()
+onMounted(() => {
+  userStore.handleLogout();
+});
+const username = ref('administrators');
+const password = ref('111111');
+const loading = ref(false);
+const router = useRouter();
+const userStore = useUserStore();
+const menuStore = useMenuStore();
 const handleLogin = async () => {
-  login(username.value, password.value).then((res)=>{
-    if (res.code === 200) {
-      userStore.login(res.data.token, res.data.user.realName);
-      router.push('/home')
-    } else {
-      ElMessage({
-        message: res.message,
-        type: 'error',
-      })
-    }
-  });
+  // 登录
+  await userStore.handleLogin(username.value, password.value);
+  // 获取菜单栏
+  await menuStore.handleMenuTree();
+  // 跳转主页
+  if (userStore.userId) {
+    router.push('/home');
+  }
 }
 </script>
 
