@@ -1,9 +1,10 @@
-import { createRouter, createWebHistory } from 'vue-router'
-import LoginView from '../views/login/index.vue'
-import MainLayout from '@/layouts/MainLayout.vue'
-import HomeView from '@/views/home/index.vue'
-import UsersView from '@/views/users/index.vue'
-import SettingsView from '@/views/settings/index.vue'
+import { createRouter, createWebHistory } from 'vue-router';
+import LoginView from '../views/login/index.vue';
+import MainLayout from '@/layouts/MainLayout.vue';
+import HomeView from '@/views/home/index.vue';
+import UsersView from '@/views/users/index.vue';
+import SettingsView from '@/views/settings/index.vue';
+import OrgView from '@/views/org/index.vue';
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -24,6 +25,12 @@ const router = createRouter({
           name: 'home',
           component: HomeView,
           meta: { title: '主页' },
+        },
+        {
+          path: 'organization',
+          name: 'organization',
+          component: OrgView,
+          meta: { title: '组织机构' },
         },
         {
           path: 'users',

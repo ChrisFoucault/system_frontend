@@ -1,5 +1,5 @@
 import { defineStore } from 'pinia'
-import { getMenuList } from '@/api/menu.ts'
+import { getMenuTree } from '@/api/menu.ts'
 import type { Menu } from '@/types/menu.ts'
 
 interface MenuState {
@@ -15,7 +15,7 @@ export const useMenuStore = defineStore('menu', {
   getters: {},
   actions: {
     async handleMenuTree() {
-      const response = await getMenuList();
+      const response = await getMenuTree();
       this.menuTree = response.data;
     },
     clearMenu() {

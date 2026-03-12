@@ -4,6 +4,7 @@ export type Menu =  {
   id: number;
   name: string;
   code: string;
+  url: string;
   children: Menu[];
 }
 
