@@ -11,8 +11,7 @@ import router from './router/index.ts'
 
 const app = createApp(App)
 
-app.use(createPinia().use(piniaPluginPersistedstate))
-app.use(router)
-app.use(ElementPlus)
-
-app.mount('#app')
+app.use(createPinia().use(piniaPluginPersistedstate));
+app.use(router);
+app.use(ElementPlus);
+app.mount('#app');

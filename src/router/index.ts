@@ -5,6 +5,8 @@ import HomeView from '@/views/home/index.vue';
 import UsersView from '@/views/users/index.vue';
 import SettingsView from '@/views/settings/index.vue';
 import OrgView from '@/views/org/index.vue';
+import ContractView from '@/views/contract/index.vue';
+import CustomerView from '@/views/customer/index.vue';
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -43,6 +45,18 @@ const router = createRouter({
           name: 'settings',
           component: SettingsView,
           meta: { title: '系统设置' },
+        },
+        {
+          path: 'contract',
+          name: 'contract',
+          component: ContractView,
+          meta: { title: '合同管理' },
+        },
+        {
+          path: 'customer',
+          name: 'customer',
+          component: CustomerView,
+          meta: { title: '客户管理' },
         },
       ],
     },
