@@ -12,16 +12,20 @@ import skipFormatting from 'eslint-config-prettier/flat'
 // More info at https://github.com/vuejs/eslint-config-typescript/#advanced-setup
 
 export default defineConfigWithVueTs(
+  globalIgnores([
+    "**/.*",
+    "dist/*",
+    "*.d.ts",
+    "public/*",
+    "src/assets/**",
+    "src/**/iconfont/**"
+  ]),
   {
     name: 'app/files-to-lint',
     files: ['**/*.{vue,ts,mts,tsx}'],
   },
-
-  globalIgnores(['**/dist/**', '**/dist-ssr/**', '**/coverage/**']),
-
   ...pluginVue.configs['flat/essential'],
   vueTsConfigs.recommended,
-
   {
     ...pluginCypress.configs.recommended,
     files: [
@@ -29,13 +33,16 @@ export default defineConfigWithVueTs(
       'cypress/support/**/*.{js,ts,jsx,tsx}',
     ],
   },
-
   {
     ...pluginVitest.configs.recommended,
     files: ['src/**/__tests__/*'],
   },
-
   ...pluginOxlint.buildFromOxlintConfigFile('.oxlintrc.json'),
-
   skipFormatting,
+  {
+    rules: {
+      "vue/multi-word-component-names": "off",
+      "@typescript-eslint/no-explicit-any": "off"
+    }
+  }
 )
