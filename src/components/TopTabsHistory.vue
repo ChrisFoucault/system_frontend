@@ -22,7 +22,7 @@ import { storeToRefs } from 'pinia'
 import { watch } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 import type { TabPaneName, TabsPaneContext } from 'element-plus'
-import { useNavigationTabsStore } from '@/stores/navigationTabs'
+import { useNavigationTabsStore } from '@/store/navigationTabs'
 
 const route = useRoute()
 const router = useRouter()

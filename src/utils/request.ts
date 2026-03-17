@@ -1,6 +1,6 @@
 import axios from 'axios';
-import { API_BASE_URL } from '@/config/index.ts';
-import { useUserStore } from '@/stores/user.ts';
+import { API_BASE_URL } from '@/config';
+import { useUserStore } from '@/store/user';
 
 // 登录等无需鉴权的接口白名单
 const AUTH_SKIP_PATHS = new Set(['/user/login']);

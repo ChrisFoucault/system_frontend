@@ -1,6 +1,6 @@
 <script setup lang="ts">
 defineOptions({ name: 'ContractView' })
-import PageLayout1   from '@/layouts/PageLayout1.vue'
+import PageLayout1   from '@/plugins/layouts/PageLayout1.vue'
 import Query from './Query.vue';
 import Table from './Table.vue';
 

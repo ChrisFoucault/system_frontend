@@ -35,31 +35,36 @@
 </template>
 
 <script setup lang="ts">
-defineOptions({ name: 'LoginView' });
-import { onMounted, ref } from 'vue'
-import { useRouter } from 'vue-router';
-import { useUserStore } from '@/stores/user.ts';
-import { useMenuStore } from '@/stores/menu.ts';
+import { useI18n } from "vue-i18n";
+import Motion from "./utils/motion";
+import { useRouter } from "vue-router";
+import { ref, toRaw, reactive, watch, computed } from "vue";
+import type { FormInstance } from "element-plus";
 
-onMounted(() => {
-  userStore.handleLogout();
-});
-const username = ref('administrators');
-const password = ref('111111');
-const loading = ref(false);
+
+defineOptions({ name: 'LoginView' });
+
+const imgCode = ref("");
+const loginDay = ref(7);
 const router = useRouter();
-const userStore = useUserStore();
-const menuStore = useMenuStore();
-const handleLogin = async () => {
-  // 登录
-  await userStore.handleLogin(username.value, password.value);
-  // 获取菜单栏
-  await menuStore.handleMenuTree();
-  // 跳转主页
-  if (userStore.userId) {
-    router.push('/home');
-  }
-}
+const loading = ref(false);
+const checked = ref(false);
+const disabled = ref(false);
+const ruleFormRef = ref<FormInstance>();
+const currentPage = computed(() => {
+  return useUserStoreHook().currentPage;
+});
+
+const { t } = useI18n();
+
+const ruleForm = reactive({
+  username: "admin",
+  password: "admin123",
+  verifyCode: ""
+});
+
+
+
 </script>
 
 <style scoped>

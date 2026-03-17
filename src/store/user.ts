@@ -1,7 +1,7 @@
 import { defineStore } from 'pinia';
 import { ElMessage } from 'element-plus';
 import { login } from '@/api/user.ts';
-import { useMenuStore } from '@/stores/menu.ts';
+import { useMenuStore } from '@/store/menu.ts';
 
 interface UserState {
   userId?: number;

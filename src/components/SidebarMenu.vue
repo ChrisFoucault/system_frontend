@@ -14,7 +14,7 @@
 </template>
 
 <script setup lang="ts">
-import { useMenuStore } from '@/stores/menu.ts';
+import { useMenuStore } from '@/store/menu.ts';
 import type { Menu } from '@/types/menu.ts';
 import { useRouter } from 'vue-router';
 
